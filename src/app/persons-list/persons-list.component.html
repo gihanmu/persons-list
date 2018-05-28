@@ -1,1 +1,21 @@
-Hello People
+<table id="persons">
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Action</th>
+    </tr>
+    <tr *ngFor="let person of persons">
+      <td>{{person.name}}</td>
+      <td>
+          <span *ngIf="person.eighteenPlus" class="eighteen-plus">{{person.age}}</span>
+          <span *ngIf="!person.eighteenPlus" class="less-than-eighteen">{{person.age}}</span>          
+      </td>
+      <td><button  (click)="removePerson(person)">Remove</button></td>
+    </tr>
+
+    <tr *ngIf="!persons.length">
+        <td colspan="3">No persons found to display</td>
+    </tr>
+    
+  </table>
+  
