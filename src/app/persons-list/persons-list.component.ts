@@ -1,4 +1,5 @@
 import {Component, OnInit } from '@angular/core'
+import { PersonsService } from './persons.service';
 
 
 
@@ -9,25 +10,26 @@ import {Component, OnInit } from '@angular/core'
     styleUrls : ['./persons-list.component.css']
 
 })
-export class PersonsList implements OnInit{
-    pageTitle : string = 'Product List';
-    imageWidth : number = 50;
-    imageMargin :number =2;
-    showImage : boolean = false;
-    errorMessage : string;
+export class PersonsList { 
 
- 
-
-    constructor(){       
-        // this.listFilter = 'cart';
+    private persons : any [] = [];
+    constructor(
+        private _personsService : PersonsService
+    ){       
+       this.loadPersonsList();
         
     }
 
 
-    ngOnInit() : void {
     
-      
-    }
+    private loadPersonsList() {
+        this._personsService.getPersonsList()
+          .subscribe(
+            data => {
+              this.persons = data;             
+            }
+          );
+      }
 
  
 
